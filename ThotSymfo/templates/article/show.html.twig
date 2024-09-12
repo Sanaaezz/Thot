@@ -3,32 +3,21 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre_article</th>
-                <td>{{ article.titreArticle }}</td>
-            </tr>
-            <tr>
-                <th>Texte_article</th>
-                <td>{{ article.texteArticle }}</td>
-            </tr>
-            <tr>
-                <th>Date_article</th>
-                <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+<header class="relative flex ">
+<img  src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
+<img class="absolute " src="/images/logo/logolignenoir.png" alt="logo de Thot">
+</header>
+    <h1 class="text-6xl">Article</h1>
+<section class='shadow-xl bg-white-600 '>
+    <div class='shadow-xl m-6'>
+        <h2>{{ article.titreArticle }}</h2>
+        <article>{{ article.texteArticle }}</article>
+        <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
+    </div>
+ </section>
     <a href="{{ path('app_article_index') }}">back to list</a>
 
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+ 
 
     {{ include('article/_delete_form.html.twig') }}
 {% endblock %}
