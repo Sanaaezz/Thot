@@ -3,78 +3,8 @@
 {% block title %}Tableau de bord{% endblock %}
 
  {% block body %}
-{% if ('ROLE_ADMIN') %}
   
- <h1>Tableau de bord</h1>
- {# <table>
-  <thead> 
-   <tr>
-     <th>Textes</th>
-   <th>Utilisateurs</th>
-  </tr>
-  </thead>
-   <tbody>
-   <tr>
-   <td>
- 
-        {% for article in articles %}
-            <section class='shadow-xl bg-white-600 '>
-            <div class='shadow-xl m-6'>
-            <h2>{{ article.titreArticle }}</h2>
-                <article>{{ article.texteArticle }}</article>
-                <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
-                <div>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                </div>
-            </div>
-               
-                
-            </section>
-        {% else %}
-            <div>
-                <p colspan="6">no records found</p>
-            </div>
-        {% endfor %}</td>
-  <td>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Rgpd_utilisateur</th>
-                <th>Nom_utilisateur</th>
-                <th>Nomdeplume_utilisateur</th>
-                <th>Presentation_utilisateur</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for utilisateur in utilisateurs %}
-            <tr>
-                <td>{{ utilisateur.id }}</td>
-                <td>{{ utilisateur.email }}</td>
-                <td>{{ utilisateur.rgpdUtilisateur ? utilisateur.rgpdUtilisateur|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ utilisateur.nomUtilisateur }}</td>
-                <td>{{ utilisateur.nomdeplumeUtilisateur }}</td>
-                <td>{{ utilisateur.presentationUtilisateur }}</td>
-                <td>
-                    <a href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-  </td>
-   </tr>
-  </tbody>
- </table> #}
-
-
-
+<h1>Tableau de bord</h1>
 <div class="  flex justify-center h-screen ">
     <div x-data="{ openTab: 1 }" class="p-8">
         <div class="max-w-md mx-auto">
@@ -132,5 +62,4 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
-  {% endif %}
 {% endblock %}

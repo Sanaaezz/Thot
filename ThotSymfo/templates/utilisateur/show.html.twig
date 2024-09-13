@@ -10,19 +10,15 @@
             <tr>
                 <th>Id</th>
                 <td>{{ utilisateur.id }}</td>
+            </tr> 
+             <tr>
+                <th>Nomdeplume_utilisateur</th>
+                <td>{{ utilisateur.nomdeplumeUtilisateur }}</td>
             </tr>
             <tr>
                 <th>Email</th>
                 <td>{{ utilisateur.email }}</td>
             </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
-            </tr>
-            {# <tr>
-                <th>Password</th>
-                <td>{{ utilisateur.password }}</td>
-            </tr> #}
             <tr>
                 <th>Rgpd_utilisateur</th>
                 <td>{{ utilisateur.rgpdUtilisateur ? utilisateur.rgpdUtilisateur|date('Y-m-d H:i:s') : '' }}</td>
@@ -31,10 +27,7 @@
                 <th>Nom_utilisateur</th>
                 <td>{{ utilisateur.nomUtilisateur }}</td>
             </tr>
-            <tr>
-                <th>Nomdeplume_utilisateur</th>
-                <td>{{ utilisateur.nomdeplumeUtilisateur }}</td>
-            </tr>
+
             <tr>
                 <th>Presentation_utilisateur</th>
                 <td>{{ utilisateur.presentationUtilisateur }}</td>

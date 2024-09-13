@@ -8,6 +8,7 @@ use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class HomeController extends AbstractController
 {
@@ -19,6 +20,7 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN', statusCode: 423, message: "Vous n'avez pas les droits pour accéder à cette page")]
     #[Route('/admin', name: 'app_admin')]
     public function tabadmin(ArticleRepository $articleRepo,UtilisateurRepository $utilisateurRepo): Response
     {
