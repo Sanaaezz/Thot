@@ -4,9 +4,13 @@
 <a href="{{ path('app_register') }}" class="ml-6">Inscription</a>
 <a href="{{path('app_article_index')}}" class="ml-6">Le Coin Lecture</a>
 </div>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="p-6 ">
 <a href="{{path('app_logout')}}">Deconnexion</a>
 </div>
+{% endif %}
+
 <div>
 <img class= "h-20 " src="/images/logo/Logoblancligne.png" alt="logo de Thot">
 </div>
