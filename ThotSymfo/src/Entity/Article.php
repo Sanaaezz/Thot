@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -16,15 +17,19 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups('api_recherche')]
     #[ORM\Column(length: 50)]
     private ?string $titre_article = null;
 
+    #[Groups('api_recherche')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $texte_article = null;
 
+    #[Groups('api_recherche')]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_article = null;
 
+     #[Groups('api_recherche')]
     #[ORM\ManyToOne(inversedBy: 'ecrire')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
@@ -44,6 +49,9 @@ class Article
      */
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'article')]
     private Collection $commenter;
+
+    #[ORM\Column]
+    private ?bool $statut_article = null;
 
     public function __construct()
     {
@@ -166,6 +174,18 @@ class Article
                 $commenter->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isStatutArticle(): ?bool
+    {
+        return $this->statut_article;
+    }
+
+    public function setStatutArticle(bool $statut_article): static
+    {
+        $this->statut_article = $statut_article;
 
         return $this;
     }

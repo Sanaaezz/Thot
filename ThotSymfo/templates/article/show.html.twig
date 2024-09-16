@@ -7,17 +7,25 @@
 <img  src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
 <img class="absolute " src="/images/logo/logolignenoir.png" alt="logo de Thot">
 </header>
-    <h1 class="text-6xl">Article</h1>
-<section class='shadow-xl bg-white-600 '>
-    <div class='shadow-xl m-6'>
-        <h2>{{ article.titreArticle }}</h2>
-        <article>{{ article.texteArticle }}</article>
+<h1 class="text-6xl">Article</h1>
+    <section class='shadow-xl bg-white-600 '>
+    {% if article.statutArticle == 1 %}
+        <div class='shadow-xl m-6'>
+            <h2>{{ article.titreArticle }}</h2>
+            <article>{{ article.texteArticle }}</article>
         <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
-    </div>
- </section>
+        </div>
+    {% else %}
+    <p>RAS</p>
+    {% endif %}
+    </section> 
     <a href="{{ path('app_article_index') }}">back to list</a>
 
  
+    {% if ('ROLE_ADMIN') %}
+        {{ include('article/_delete_form.html.twig') }}
+        <p>changer la visibilité</p>
+    {% endif %}
+    
 
-    {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

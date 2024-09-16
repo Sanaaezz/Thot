@@ -17,19 +17,20 @@
      <main class=' w-full'>
      <h1 class='text-4xl mx-auto'>Le Coin Lecture</h1>
 
-    {% include 'includes/search.html.twig' %}
+    {% include 'includes/recherche.html.twig' %}
+
 
 
         {% for article in articles %}
-            <section class='shadow-xl bg-white-600 '>
-            <div class='shadow-xl m-6'>
-            <h2>{{ article.titreArticle }}</h2>
-                <article>{{ article.texteArticle }}</article>
-                <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
-                <div>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                </div>
-            </div>
+            <section id="result"  class='shadow-xl bg-white-600 '>
+                {# <div class='shadow-xl m-6'>
+                    <h2>{{ article.titreArticle }}</h2>
+                    <article>{{ article.texteArticle }}</article>
+                    <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
+                    <div>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    </div> #}
+                {# </div> #}
                
                 
             </section>
@@ -37,7 +38,7 @@
             <div>
                 <p colspan="6">no records found</p>
             </div>
-        {% endfor %}
+        {% endfor %} 
     
 
     <a href="{{ path('app_article_new') }}">Create new</a>

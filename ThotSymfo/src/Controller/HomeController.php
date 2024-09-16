@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Repository\ArticleRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -29,4 +30,7 @@ class HomeController extends AbstractController
             'utilisateurs'=> $utilisateurRepo->findAll()
         ]);
     }
+
+
 }
+

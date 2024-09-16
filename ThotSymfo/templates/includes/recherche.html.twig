@@ -1,0 +1,85 @@
+<div class=" flex justify-center px-20">
+  <div class="flex items-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
+    <div class="flex  p-4 w-72 space-x-4 rounded-lg">
+      {# <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg> #}
+      <input id="inputTitre" class="bg-gray-100 outline-none" type="text" placeholder="Titre" />
+    </div>
+    <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
+        <select name="categorie" id="SelectCat">
+    {% for categorie in categories %}
+        <option value={{categorie.id}}>{{ categorie.nomCategorie  }}</option>
+    {% endfor %}
+    </select>
+ 
+      
+      {# <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg> #}
+    </div>
+    <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
+
+    <select name="genre" id="slectGenre">
+    {% for genre in genres %}
+        <option value={{genre.id}}>{{ genre.nomGenre  }}</option>
+    {% endfor %}
+    </select>
+{# 
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg> #}
+    </div>
+    <div class="bg-gray-800 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
+      <button onclick=rechercheTitre() >Rechercher</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function rechercheTitre() {
+  let inputTitre = document.getElementById("inputTitre").value;
+  let selectCat = document.getElementById('selectCat').value;
+  let selectGenre = document.getElementById('selectGenre').value;
+console.log(selectCat,selectGenre,inputTitre);
+
+ let listeparR = {
+    titre: inputTitre,
+    categorie: selectCat,
+    genre: selectGenre,
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(listeparR),
+  };
+
+  fetch("https://127.0.0.1:8000/api/article/recherche", params)
+    .then((res) => res.text())
+    .then((data) => {
+      resultRech(JSON.parse(data))
+    });
+}
+
+function resultRech(articles) {
+  let result = document.getElementById('result');
+ result.innerHTML = '';
+
+  articles.forEach(article => {
+    console.log(article);
+    
+  result.innerHTML+=` <div class='shadow-xl m-6'>
+                    <h2> ` + article.titre_article +`</h2>
+                    <article></article>
+                    <p></p>
+                    <div>
+                        <a href="">show</a>
+                    </div>
+                </div>`
+  });
+  }
+</script>

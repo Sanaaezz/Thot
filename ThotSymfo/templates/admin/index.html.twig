@@ -20,20 +20,17 @@
           <thead>
             <tr>
             <th>Titre</th>
-            <th>Texte</th>
             <th>Date</th>
-            <th>Nom de plume</th>
-            <th>Validation</th>
             </tr>
           </thead>
           <tbody>
            {% for article in articles %}
           <tr>
           <td>{{ article.titreArticle }}</td>
-          <td>{{ article.texteArticle }}</td>
           <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</td>
-          <td></td>
-          <td></td>
+          <td>
+            <a href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
+          </td>
           </tr>
               {% else %}
               <tr>
