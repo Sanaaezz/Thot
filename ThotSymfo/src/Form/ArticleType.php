@@ -29,14 +29,14 @@ class ArticleType extends AbstractType
             ])
             ->add('classer', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom_categorie',
                 'multiple' => true,
             ])
             ->add('style', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom_genre',
             ])
-            ->add('statut_article', null, [
+            ->add('statut_article', CheckboxType::class, [
                 'required' => false,
             ])
         ;

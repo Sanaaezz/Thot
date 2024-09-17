@@ -20,6 +20,7 @@
     {% endif %}
     </section> 
     <a href="{{ path('app_article_index') }}">back to list</a>
+    <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
 
  
     {% if ('ROLE_ADMIN') %}

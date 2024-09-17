@@ -25,8 +25,10 @@ final class ArticleController extends AbstractController
         $titre = ($para['titre']);
         $categorie = ($para['categorie']);
         $genre = ($para['genre']);
-        dd($titre,$categorie, $genre);
-        $article = $articleRepository->findByFilters($titre, $categorie, $genre);
+        
+
+        // dd($titre,$categorie, $genre);
+        $article = $articleRepository->findByFiltres($titre, $categorie, $genre);
 
 
         return $this->json($article, context: ['groups' => 'api_recherche']);

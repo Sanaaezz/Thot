@@ -23,16 +23,14 @@
 
         {% for article in articles %}
             <section id="result"  class='shadow-xl bg-white-600 '>
-                {# <div class='shadow-xl m-6'>
+                <div class='shadow-xl m-6'>
                     <h2>{{ article.titreArticle }}</h2>
                     <article>{{ article.texteArticle }}</article>
                     <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
                     <div>
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    </div> #}
-                {# </div> #}
-               
-                
+                    </div>
+                </div>
             </section>
         {% else %}
             <div>

@@ -29,7 +29,7 @@ class Article
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_article = null;
 
-     #[Groups('api_recherche')]
+    #[Groups('api_recherche')]
     #[ORM\ManyToOne(inversedBy: 'ecrire')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Utilisateur $utilisateur = null;
