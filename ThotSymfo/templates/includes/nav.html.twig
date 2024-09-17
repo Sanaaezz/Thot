@@ -1,8 +1,12 @@
 <nav class='bg-stone-800 text-white flex flex-nowrap justify-between w-screem'>
 
 <div class="p-6 ">
-  
-<a href="{{ path('app_login') }}" class=" btnConnex ml-6">Connexion</a>
+
+{% if app.user %}
+  <a href="{{path('app_logout')}}">Deconnexion</a>
+  {% else %}
+  <a href="{{ path('app_login') }}" class=" btnConnex ml-6">Connexion</a>
+{% endif %}
 
 <a href="{{ path('app_register') }}" class=" btnInscrip ml-6">Inscription</a>
 
@@ -16,11 +20,7 @@
 </div>
 {% endif %}
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<div class="p-6 ">
-<a href="{{path('app_logout')}}">Deconnexion</a>
-</div>
-{% endif %}
+
 
 <div>
 <img class= "h-20 " src="/images/logo/Logoblancligne.png" alt="logo de Thot">

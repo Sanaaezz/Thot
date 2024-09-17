@@ -37,6 +37,7 @@ class ArticleType extends AbstractType
                 'choice_label' => 'nom_genre',
             ])
             ->add('statut_article', CheckboxType::class, [
+                'label' => 'statut',
                 'required' => false,
             ])
         ;

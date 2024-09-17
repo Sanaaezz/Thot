@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/article')]
 final class ArticleController extends AbstractController
@@ -26,6 +27,15 @@ final class ArticleController extends AbstractController
             'categories' => $categorieRepo ->findAll(),
         ]);
     }
+
+    // #[Route(name: 'app_article_index', methods: ['GET'])]
+    // public function index(ArticleRepository $articleRepository): Response
+    // {
+    //     return $this->render('article/index.html.twig', [
+    //         'articles' => $articleRepository->findAllVisible(),
+
+    //     ]);
+    // }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -47,6 +57,7 @@ final class ArticleController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN', statusCode: 423, message: "Vous n'avez pas les droits pour accéder à cette page")]
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
@@ -85,22 +96,5 @@ final class ArticleController extends AbstractController
     }
 
 
-    // #[Route('/recherche', name: 'app_article_recherche')]
-    // public function recherche(Request $request, ArticleRepository $articleRepository): JsonResponse
-    // {
-    //     $content = $request->getContent();
-    //     $para = json_decode($content, true);
-    //     dd($para);
-    //     $titre = ($para['titre']);
-    //     // $categorie = $request->query->get('categorie');
-    //     // $genre = $request->query->get('genre');
-    //     // $articles = $articleRepository->findByFilters($titre, $categorie, $genre);
-
-    //     $article = $articleRepository->findByTitre($titre);
-
-    //     return $this->json($article, context: ['groups' => 'api_recherche']);
-    //     // return $this->render('article/show.html.twig', [
-    //     //     'articles' => $articles,
-    //     // ]);
-    // }
+ 
 }

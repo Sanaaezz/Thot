@@ -19,9 +19,8 @@
 
     {% include 'includes/recherche.html.twig' %}
 
-
-
         {% for article in articles %}
+            {% if article.statutArticle %}
             <section id="result"  class='shadow-xl bg-white-600 '>
                 <div class='shadow-xl m-6'>
                     <h2>{{ article.titreArticle }}</h2>
@@ -36,9 +35,10 @@
             <div>
                 <p colspan="6">no records found</p>
             </div>
+            {% endif %}
         {% endfor %} 
-    
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+
+    {# <a href="{{ path('app_article_new') }}">Create new</a> #}
     </main>
 {% endblock %}

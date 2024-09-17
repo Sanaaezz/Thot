@@ -5,7 +5,7 @@
  {% block body %}
 
     
-
+<main class="h-screen">
 <h1>Tableau de bord</h1>
 <div class=" flex ">
   <div x-data="{ openTab: 1 }" class="p-8">
@@ -24,7 +24,6 @@
             <th>Titre</th>
             <th>Date</th>
             <th>Action</th>
-            <th>Visibilité</th>
             </tr>
           </thead>
           <tbody>
@@ -32,23 +31,11 @@
           <tr>
           <td>{{ article.titreArticle }}</td>
           <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</td>
-
+          <td>{{article.statutArticle ? 'Yes' : 'No' }}</td>
           <td>
             {# <a href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a> #}
             <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
           </td>
-          <td>
-          <input type="checkbox" {{ article.statutArticle ? 'true' : 'false' }}>
-          </td>
-          {{ dump(article) }}
-          <td>
-            <label class="relative inline-flex cursor-pointer items-center">
-            <input id="switch" type="checkbox" class="peer sr-only" />
-            <label for="switch" class="hidden"></label>
-            <div class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-300 peer-checked:after:translate-x-full peer-focus:ring-green-300"></div>
-            </label>
-          </td>
-
           </tr>
               {% else %}
               <tr>
@@ -98,16 +85,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
   
-// <script>
-// const otherCheckbox = document.querySelector("#switch");
-// otherCheckbox.addEventListener("change", () => {
-//   if (otherCheckbox.checked) {
-//     otherText.value = true;
-//   } else {
-//     otherText.style.visibility = false;
-//   }
-// });
-
-// </script>
+  </main>
 
   {% endblock %}
