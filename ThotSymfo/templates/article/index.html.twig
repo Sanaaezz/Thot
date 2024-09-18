@@ -19,24 +19,24 @@
 
     {% include 'includes/recherche.html.twig' %}
 
+            <section id="result" >
         {% for article in articles %}
             {% if article.statutArticle %}
-            <section id="result"  class='shadow-xl bg-white-600 '>
                 <div class='shadow-xl m-6'>
                     <h2>{{ article.titreArticle }}</h2>
-                    <article>{{ article.texteArticle }}</article>
+                    <article>{{ article.texteArticle|raw }}</article>
                     <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
                     <div>
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
                     </div>
                 </div>
-            </section>
-        {% else %}
-            <div>
-                <p colspan="6">no records found</p>
-            </div>
             {% endif %}
         {% endfor %} 
+        {# {% else %}
+            <div>
+                <p colspan="6">no records found</p>
+            </div> #}
+            </section>
 
 
     {# <a href="{{ path('app_article_new') }}">Create new</a> #}

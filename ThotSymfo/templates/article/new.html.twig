@@ -4,8 +4,23 @@
 
 {% block body %}
     <h1>Create new Article</h1>
-
+    <main class = 'h-screen'>
     {{ include('article/_form.html.twig') }}
 
     <a href="{{ path('app_article_index') }}">back to list</a>
+
+
+
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+</main>
+
+<script>
+    tinymce.init({
+        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
+        menubar: false, // Désactive la barre de menus
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
+    });
+</script>
 {% endblock %}
