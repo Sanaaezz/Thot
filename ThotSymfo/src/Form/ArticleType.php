@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Genre;
 use App\Entity\Utilisateur;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,7 +20,10 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre_article')
-            ->add('texte_article')
+            ->add('texte_article', CKEditorType::class, [
+                'config' => [
+                'toolbar' => 'full',
+            ]])
             ->add('date_article', null, [
                 'widget' => 'single_text',
             ])
@@ -42,7 +46,7 @@ class ArticleType extends AbstractType
             ])
         ;
     }
-
+//  test
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

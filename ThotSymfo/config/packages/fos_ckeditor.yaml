@@ -1,0 +1,9 @@
+fos_ck_editor:
+    default_config: default
+    configs:
+        default:
+            toolbar: full
+            extraPlugins: "autogrow"
+            autoGrow_minHeight: 200
+            autoGrow_maxHeight: 600
+            removeButtons: "Subscript,Superscript"
