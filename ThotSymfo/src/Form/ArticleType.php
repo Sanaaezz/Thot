@@ -12,10 +12,17 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\Required;
 
 class ArticleType extends AbstractType
 {
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -37,15 +44,13 @@ class ArticleType extends AbstractType
                 'class' => Genre::class,
                 'choice_label' => 'nom_genre',
             ]);
-            // a complter 
-            if (is_granted('ROLE_Amdin')){
+            
+            if ($this->authorizationChecker->isGranted('ROLE_ADMIN')){
                 $builder->add('statut_article', CheckboxType::class, [
-                'label' => 'statut',
+                'label' => 'statut_article',
                 'required' => false,
                 ]);
-            }
-
-        ;
+            };
     }
 
     public function configureOptions(OptionsResolver $resolver): void

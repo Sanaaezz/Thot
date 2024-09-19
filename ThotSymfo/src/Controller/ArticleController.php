@@ -28,14 +28,6 @@ final class ArticleController extends AbstractController
         ]);
     }
 
-    // #[Route(name: 'app_article_index', methods: ['GET'])]
-    // public function index(ArticleRepository $articleRepository): Response
-    // {
-    //     return $this->render('article/index.html.twig', [
-    //         'articles' => $articleRepository->findAllVisible(),
-
-    //     ]);
-    // }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -45,10 +37,15 @@ final class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($article);
-            $entityManager->flush();
+            // pour forcer le statut a faux pour qu il ne soit pas connu null dans la base de donnée 
+            $article->setStatutArticle(false);
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            $entityManager->persist($article);
+        
+            $entityManager->flush();
+            
+
+            return $this->redirectToRoute('app_auteur', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('article/new.html.twig', [

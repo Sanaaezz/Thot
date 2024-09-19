@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Utilisateur;
 use App\Repository\ArticleRepository;
 use App\Repository\UtilisateurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,5 +32,18 @@ class HomeController extends AbstractController
     }
 
 
+    #[Route('/auteur', name: 'app_auteur')]
+    public function tabauteur(ArticleRepository $articleRepo): Response
+    {
+
+        $utilisateur= $this->getUser();
+        if ($utilisateur && $utilisateur instanceof Utilisateur) {
+            $idU=$utilisateur->getId();
+        }
+        return $this->render('auteur/index.html.twig', [
+            'articles' => $articleRepo->findBy(['utilisateur'=>$idU]),
+        ]);
+
 }
 
+}

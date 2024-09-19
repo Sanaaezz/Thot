@@ -2,25 +2,35 @@
 
 {% block title %}New Article{% endblock %}
 
-{% block body %}
+{% block body %} 
+{% block javascript %}
+<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea', 
+        menubar: false, 
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: '//www.tiny.cloud/css/codepen.min.css', 
+    });
+</script>    
+{% endblock %}
+
+ <main class = 'h-screen'>
+        
+
+
+   {# {{form_label(form.email) }}
+            
+    {{ form_row(form.email,{'label': false}) }} #}
+
     <h1>Create new Article</h1>
-    <main class = 'h-screen'>
+
+    
     {{ include('article/_form.html.twig') }}
 
     <a href="{{ path('app_article_index') }}">back to list</a>
-
-
-
-    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+    
 </main>
 
-<script>
-    tinymce.init({
-        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
-        menubar: false, // Désactive la barre de menus
-        plugins: 'advlist autolink lists link image charmap print preview anchor',
-        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
-        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
-    });
-</script>
 {% endblock %}

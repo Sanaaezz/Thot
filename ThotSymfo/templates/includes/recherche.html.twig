@@ -38,7 +38,7 @@
         <option >{{ genre.nomGenre  }}</option>
     {% endfor %}
     </select> #}
-{# 
+    {# 
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg> #}
@@ -90,8 +90,8 @@ function resultRech(articles) {
 
   articles.forEach(article => {
     console.log(article);
-    
-  result.innerHTML+=` <div class='shadow-xl m-6'>
+    if (article.statut_article == true){
+        result.innerHTML+=` <div class='shadow-xl m-6'>
                     <h2> ` + article.titre_article +`</h2>
                     <article></article>
                     <p></p>
@@ -99,6 +99,8 @@ function resultRech(articles) {
                         <a href="">show</a>
                     </div>
                 </div>`
+    }
   });
+
   }
 </script>

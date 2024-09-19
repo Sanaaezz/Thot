@@ -49,7 +49,8 @@ class Article
      */
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'article')]
     private Collection $commenter;
-
+    
+    #[Groups('api_recherche')]
     #[ORM\Column]
     private ?bool $statut_article = null;
 
