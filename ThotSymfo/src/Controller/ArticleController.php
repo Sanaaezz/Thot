@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Utilisateur;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
@@ -37,14 +38,17 @@ final class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // pour forcer le statut a faux pour qu il ne soit pas connu null dans la base de donnée 
+
+            // pour forcer le statut a faux pour qu il ne soit pas connu null dans la base de donnée
             $article->setStatutArticle(false);
 
+            $utilisateur = $this->getUser();
+            $article->setUtilisateur($utilisateur);
             $entityManager->persist($article);
         
             $entityManager->flush();
-            
 
+            // $this->addFlash('success', 'Votre texte a bien été envoyé, aprés vérification, il sera bientot visible ');
             return $this->redirectToRoute('app_auteur', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -24,8 +24,8 @@
         <section id="result" >
                 <div class='shadow-xl m-6'>
                     <h2>{{ article.titreArticle }}</h2>
-                    <article>{{ article.texteArticle|raw }}</article>
-                    <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
+                    <article>{{ article.texteArticle[:500]|raw }}</article>
+                    <p>{{ article.dateArticle ? article.dateArticle|date('d F Y') : '' }}</p>
                     <div>
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
                     </div>

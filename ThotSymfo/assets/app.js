@@ -13,6 +13,8 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 // Initialisation de TinyMCE
 import "tinymce/plugins/print";
 
+
+
 // document.addEventListener('turbo:render',function(){
 //   tinymce.init({
 //     selector: "textarea",

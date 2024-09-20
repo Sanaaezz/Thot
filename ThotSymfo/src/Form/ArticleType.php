@@ -26,23 +26,56 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre_article')
-            ->add('texte_article', TextareaType::class)
+            ->add('titre_article',null,[
+                 'label'=>'Titre : ',
+                 'attr'=>[
+                    'class'=>'my-2'
+                    ]
+            ])
+
+            ->add('texte_article', TextareaType::class,[
+                'label' =>'A votre clavier',
+                'attr' => [
+                    'class' => 'my-2'
+                ]
+            ])
+
             ->add('date_article', null, [
                 'widget' => 'single_text',
-            ])
+                'label' => 'Choisissez une date : ',
+            'attr' => [
+                'class' => 'my-2'
+            ]
+            ]);
+
+            if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+            $builder
             ->add('utilisateur', EntityType::class, [
                 'class' => Utilisateur::class,
                 'choice_label' => 'id',
-            ])
+            ]);}
+
+
+        $builder
             ->add('classer', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'nom_categorie',
-                'multiple' => true,
+                'choice_label' => 'nom_categorie',  
+                'multiple' => true,                 
+                'expanded' => true,                
+                'label' => 'Choisissez les catégories : ',
+                'attr' => [
+                    'class' => 'my-4'
+                ]
             ])
+
             ->add('style', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'nom_genre',
+                'label' => 'Genre : ',
+            'attr' => [
+                'class' => 'my-4'
+            ]
+    
             ]);
             
             if ($this->authorizationChecker->isGranted('ROLE_ADMIN')){
@@ -52,6 +85,7 @@ class ArticleType extends AbstractType
                 ]);
             };
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {

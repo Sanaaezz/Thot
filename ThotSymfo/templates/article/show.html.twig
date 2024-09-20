@@ -3,22 +3,24 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-<header class="relative flex ">
-    <img class="h-1/6 w-screen" src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
-    <img class="absolute flex mx-auto justify-center" src="/images/logo/logolignenoir.png" alt="logo de Thot">
+<header class="h-24 relative w-screen flex">
+    <img class="w-full object-cover" src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
+    <div class="absolute inset-0 flex items-center justify-center">
+        <img class="w-1/4 h-auto " src="/images/logo/logolignenoir.png" alt="logo de Thot">
+    </div>
 </header>
+
 <main>
-    <h1 class="text-6xl">Article</h1>
-    <section class='shadow-xl bg-white-600 '>
-
-        <div class='shadow-xl m-6'>
-            <h2>{{ article.titreArticle }}</h2>
-            <article>{{ article.texteArticle|raw }}</article>
-        <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
+    <section class=' mx-10 flex flex-col justify-between'>
+        <div class='shadow-2xl shadow-inner m-6'>
+            <h2 class="text-center p-8  font-semibold text-3xl">{{ article.titreArticle }}</h2>
+            <article class='my-6'>{{ article.texteArticle|raw }}</article>
+            <p class"font-semibold italic">{{article.utilisateur.nomUtilisateur}}</p>
+            <p class='flex justify-end'>{{ article.dateArticle ? article.dateArticle|date('d F Y'): '' }}</p>
         </div>
-
-    </section> 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    </section>
+    
+    <a href="{{ path('app_article_index') }}">Retour</a>
     {% if app.user %}
         <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
     {% endif %}

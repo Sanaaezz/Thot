@@ -31,10 +31,10 @@
           <tr>
           <td>{{ article.titreArticle }}</td>
           <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</td>
-          <td>{{article.statutArticle ? 'Yes' : 'No' }}</td>
+          <td>{{article.statutArticle ? 'Visible' : 'En attente' }}</td>
           <td>
             {# <a href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a> #}
-            <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
+            <a href="{{path('app_article_edit', {'id' : article.id})}}">Voir</a>
           </td>
           </tr>
               {% else %}

@@ -14,12 +14,16 @@
     });
 </script>
 
- <main class = 'h-screen'>
+ <main class = 'h-screen mb-[300px]'>
         
-    <h1>Create new Article</h1>
+    <h2 class="text-center p-8 font-semibold text-3xl">Nouveau texte</h2>
 
+    <div class=' m-8 flex justify-between'>
     
-    {{ include('article/_form.html.twig') }}
+        {{ include('article/_form.html.twig') }}
+    </div>
+    
+
 
     <a href="{{ path('app_article_index') }}">back to list</a>
     
