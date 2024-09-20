@@ -7,9 +7,9 @@
       
         {% block stylesheets %}
         {% endblock %}
-
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% block javascript %}
+            <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
        
     </head>  

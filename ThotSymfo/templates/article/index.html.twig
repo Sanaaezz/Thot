@@ -3,25 +3,25 @@
 {% block title %}Article index{% endblock %}
 
 {% block body %}
-    
+
     <header class="flex flex-nowrap ">
-    <div class="w-3/6">
-     <img class="" src="images/logo/logogr-removebg.png" alt="logo de Thot">
-    </div>
-    <div class="w-3/6">
-    <img class="" src="images/image/livrebibli.jpg" alt="image d'un livre au milieu d'une bibliotheque">
-    </div>
+        <div class="w-3/6">
+            <img class="" src="images/logo/logogr-removebg.png" alt="logo de Thot">
+        </div>
+        <div class="w-3/6">
+            <img class="" src="images/image/livrebibli.jpg" alt="image d'un livre au milieu d'une bibliotheque">
+        </div>
     </header>
    
    
-     <main class=' w-full'>
-     <h1 class='text-4xl mx-auto'>Le Coin Lecture</h1>
+    <main class=' w-full'>
+        <h1 class='text-4xl mx-auto'>Le Coin Lecture</h1>
 
-    {% include 'includes/recherche.html.twig' %}
+            {% include 'includes/recherche.html.twig' %}
 
-    <section id="result" >
-       {# {% for article in articles %}
+                {% for article in articles %}
             {% if article.statutArticle %}
+        <section id="result" >
                 <div class='shadow-xl m-6'>
                     <h2>{{ article.titreArticle }}</h2>
                     <article>{{ article.texteArticle|raw }}</article>
@@ -30,15 +30,12 @@
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
                     </div>
                 </div>
+        </section>
             {% endif %}
-        {% endfor %}  #}
-        {# {% else %}
-            <div>
-                <p colspan="6">no records found</p>
-            </div> #}
-     </section>
+        {% endfor %} 
+  
 
-
-    {# <a href="{{ path('app_article_new') }}">Create new</a> #}
     </main>
+
+
 {% endblock %}

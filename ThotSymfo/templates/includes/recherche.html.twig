@@ -1,52 +1,27 @@
 <div class=" flex justify-center px-20">
   <div class="flex items-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
     <div class="flex  p-4 w-72 space-x-4 rounded-lg">
-      {# <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg> #}
       <input id="inputTitre" class="bg-gray-100 outline-none" type="text" placeholder="Titre" />
     </div>
     <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
-<select name="categorie" id="selectCat">
-    <option value="ttCat">-- Choisir une categorie --</option>
-    {% for categorie in categories %}
-        <option value="{{ categorie.id }}">{{ categorie.nomCategorie }}</option>
-    {% endfor %}
-</select>
-
-        {# <select name="categorie" id="SelectCat">
-    {% for categorie in categories %}
-        <option >{{ categorie.nomCategorie  }}</option>
-    {% endfor %}
-    </select> #}
- 
-      
-      {# <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg> #}
+      <select name="categorie" id="selectCat">
+        <option value="ttCat">-- Choisir une categorie --</option>
+          {% for categorie in categories %}
+            <option value="{{ categorie.id }}">{{ categorie.nomCategorie }}</option>
+          {% endfor %}
+      </select>
     </div>
     <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
-    <select name="genre" id="selectGenre">
-    <option value="ttGenre">-- Choisir un genre --</option>
-    {% for genre in genres %}
-        <option value="{{ genre.id }}">{{ genre.nomGenre }}</option>
-    {% endfor %}
-    </select>
-
-    {# <select name="genre" id="slectGenre">
-    {% for genre in genres %}
-        <option >{{ genre.nomGenre  }}</option>
-    {% endfor %}
-    </select> #}
-    {# 
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg> #}
+      <select name="genre" id="selectGenre">
+        <option value="ttGenre">-- Choisir un genre --</option>
+          {% for genre in genres %}
+            <option value="{{ genre.id }}">{{ genre.nomGenre }}</option>
+          {% endfor %}
+      </select>
     </div>
     <div class="bg-gray-800 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
       <button onclick=rechercheTitre() >Rechercher</button>
-    </div>
-    
+    </div>   
   </div>
 </div>
 
@@ -96,7 +71,6 @@ function resultRech(articles) {
                     <article></article>
                     <p></p>
                     <div>
-                        <a href="">show</a>
                     </div>
                 </div>`
     }

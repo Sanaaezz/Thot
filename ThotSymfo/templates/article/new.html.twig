@@ -2,28 +2,20 @@
 
 {% block title %}New Article{% endblock %}
 
+
 {% block body %} 
-{% block javascript %}
-<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
     tinymce.init({
-        selector: 'textarea', 
-        menubar: false, 
+        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
+        menubar: false, // Désactive la barre de menus
         plugins: 'advlist autolink lists link image charmap print preview anchor',
         toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
-        content_css: '//www.tiny.cloud/css/codepen.min.css', 
+        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
     });
-</script>    
-{% endblock %}
+</script>
 
  <main class = 'h-screen'>
         
-
-
-   {# {{form_label(form.email) }}
-            
-    {{ form_row(form.email,{'label': false}) }} #}
-
     <h1>Create new Article</h1>
 
     

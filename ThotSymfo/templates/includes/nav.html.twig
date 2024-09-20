@@ -1,31 +1,30 @@
 <nav class='bg-stone-800 text-white flex flex-row justify-between w-screem'>
 
-<div class="p-6 ">
-{% if app.user %}
-  <a href="{{path('app_logout')}}">Deconnexion</a>
-  {% else %}
-<a href="{{ path('app_login') }}" class=" btnConnex ml-6">Connexion</a>
-<a href="{{ path('app_register') }}" class=" btnInscrip ml-6">Inscription</a>
-{% endif %}
-<a href="{{path('app_article_index')}}" class="ml-6">Le Coin Lecture</a>
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-<a href="{{path('app_article_new')}}" class="ml-6">Soumettre votre texte</a>
-{% endif %}
-</div>
+  <div class="p-6 ">
+    {% if app.user %}
+      <a href="{{path('app_logout')}}">Deconnexion</a>
+    {% else %}
+      <a href="{{ path('app_login') }}" class=" btnConnex ml-6">Connexion</a>
+      <a href="{{ path('app_register') }}" class=" btnInscrip ml-6">Inscription</a>
+    {% endif %}
+      <a href="{{path('app_article_index')}}" class="ml-6">Le Coin Lecture</a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a href="{{path('app_article_new')}}" class="ml-6">Soumettre votre texte</a>
+    {% endif %}
+  </div>
 
-<div class="p-6 ">
-{% if is_granted('ROLE_ADMIN') %}
-<a  href="{{path('app_admin')}}">Tableau de bord</a>
-{% elseif is_granted('ROLE_USER') %}
-<a href="{{path('app_auteur')}}">Tableau de bord</a>
-{% endif %}
-</div>
+  <div class="p-6 ">
+    {% if is_granted('ROLE_ADMIN') %}
+      <a  href="{{path('app_admin')}}">Tableau de bord</a>
+    {% elseif is_granted('ROLE_USER') %}
+      <a href="{{path('app_auteur')}}">Tableau de bord</a>
+    {% endif %}
+  </div>
 
-
-<div >
-<a href="{{path('app_article_index')}}">
-<img class= "h-20 " src="/images/logo/Logoblancligne.png" alt="logo de Thot" >
-</a>
-</div>
+  <div >
+    <a href="{{path('app_home')}}">
+      <img class= "h-20 " src="/images/logo/Logoblancligne.png" alt="logo de Thot" >
+    </a>
+  </div>
 
 </nav>

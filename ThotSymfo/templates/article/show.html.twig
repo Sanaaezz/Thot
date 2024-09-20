@@ -4,10 +4,11 @@
 
 {% block body %}
 <header class="relative flex ">
-<img  src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
-<img class="absolute " src="/images/logo/logolignenoir.png" alt="logo de Thot">
+    <img class="h-1/6 w-screen" src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
+    <img class="absolute flex mx-auto justify-center" src="/images/logo/logolignenoir.png" alt="logo de Thot">
 </header>
-<h1 class="text-6xl">Article</h1>
+<main>
+    <h1 class="text-6xl">Article</h1>
     <section class='shadow-xl bg-white-600 '>
 
         <div class='shadow-xl m-6'>
@@ -19,7 +20,7 @@
     </section> 
     <a href="{{ path('app_article_index') }}">back to list</a>
     {% if app.user %}
-    <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
+        <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
     {% endif %}
  
     {% if ('ROLE_ADMIN') %}
@@ -27,5 +28,5 @@
         
     {% endif %}
     
-
+</main>
 {% endblock %}

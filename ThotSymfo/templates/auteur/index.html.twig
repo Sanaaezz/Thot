@@ -5,31 +5,19 @@
     
 {% endblock %}
 {% block body %}
-  <h1 class="text-2xl font-semibold mb-2 text-stone-800">Liste des textes</h2>
-
-  {# {% for article in articles %}
-    <div class='shadow-xl m-6 flex '>
-      <h2>{{ article.titreArticle }}</h2>
-      <article>{{ article.texteArticle|raw }}</article>
-      <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
-      <div>
-        <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-      </div>
-    </div>
-  {% endfor %}  #}
-
-
-        <table>
-          <thead>
-            <tr>
-            <th>Titre</th>
-            <th>Date</th>
-            <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-           {% for article in articles %}
-          <tr>
+<main class="h-screen">
+  <h2 class="text-2xl font-semibold mb-2 text-stone-800">Liste de vos textes</h2>
+    <table class="w-screen m-8 p-6">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="">
+       {% for article in articles %}
+        <tr>
           <td >{{ article.titreArticle }}</td>
           <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</td>
           <td>
@@ -37,29 +25,14 @@
             {# <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a> #}
             {{ include('article/_delete_form.html.twig') }}
           </td>
-          </tr>
-              {% else %}
-              <tr>
-                <td colspan="9">no records found</td>
-              </tr>
-              {% endfor %}
-          </tbody>
-        </table>
-
-
-
-
-        {# {% for article in articles %}
-
-                <div class='shadow-xl m-6'>
-                    <h2>{{ article.titreArticle }}</h2>
-                    <article>{{ article.texteArticle|raw }}</article>
-                    <p>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</p>
-                    <div>
-                        <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    </div>
-                </div>
-
-        {% endfor %}  #}
+        </tr>
+            {% else %}
+        <tr>
+          <td colspan="9">Vous n'avez encore aucune créations</td>
+        </tr>
+            {% endfor %}
+      </tbody>
+    </table>
   <a href="{{ path('app_article_new') }}">Create new</a>
+  </main>
 {% endblock %}
