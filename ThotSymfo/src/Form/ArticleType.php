@@ -27,14 +27,16 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre_article',null,[
+                'empty_data' => '',
                  'label'=>'Titre : ',
                  'attr'=>[
                     'class'=>'my-2'
                     ]
             ])
-
+            
             ->add('texte_article', TextareaType::class,[
-                'label' =>'A votre clavier',
+                'empty_data'=>'',
+                'label' =>'A votre clavier : ',
                 'attr' => [
                     'class' => 'my-2'
                 ]

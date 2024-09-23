@@ -15,9 +15,12 @@
 
   <div class="p-6 ">
     {% if is_granted('ROLE_ADMIN') %}
-      <a  href="{{path('app_admin')}}">Tableau de bord</a>
+      <a  href="{{path('app_admin')}}">Tableau de bord de         
+        </a>
     {% elseif is_granted('ROLE_USER') %}
-      <a href="{{path('app_auteur')}}">Tableau de bord</a>
+      <a href="{{path('app_auteur')}}">Tableau de bord
+
+      </a>
     {% endif %}
   </div>
 

@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
+// #[UniqueEntity(fields: ['titre_article'], message: 'choisir un autre ')]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
@@ -22,10 +25,12 @@ class Article
     private ?string $titre_article = null;
 
     #[Groups('api_recherche')]
+    #[Assert\NotBlank(message: 'Avec un texte c\'est mieux !')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $texte_article = null;
 
     #[Groups('api_recherche')]
+    #[Assert\NotBlank(message: 'Merci de choisir une date')]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_article = null;
 
@@ -41,6 +46,7 @@ class Article
     private Collection $classer;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[Assert\NotBlank(message: 'Merci de choisir un genre')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Genre $style = null;
 

@@ -20,9 +20,9 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom_utilisateur', TextType::class,[
-            'label' => "Nom"])
+            'label' => "Nom : "])
             ->add('nomdeplume_utilisateur', TextType::class,[
-            'label' => "Nom de plume"])
+            'label' => "Nom de plume : "])
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -35,8 +35,8 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
             'type' => PasswordType::class,
                 'mapped' => false,
-            'first_options'  => ['label' => 'Password'],
-            'second_options' => ['label' => 'Repeat Password'],
+            'first_options'  => ['label' => 'Mot de pass : '],
+            'second_options' => ['label' => 'Confirmez votre mot de pass : '],
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([

@@ -3,6 +3,7 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
+
 <header class="h-24 relative w-screen flex">
     <img class="w-full object-cover" src="/images/image/entetearticle.jpg" alt="image d'un livre ouvert">
     <div class="absolute inset-0 flex items-center justify-center">
@@ -20,14 +21,18 @@
         </div>
     </section>
     
-    <a href="{{ path('app_article_index') }}">Retour</a>
+    <a href="{{ path('app_article_index') }}">Retour vers la page de recherche </a>
+
     {% if app.user %}
+    <div>
         <a href="{{path('app_article_edit', {'id' : article.id})}}">edit</a>
+    </div>
     {% endif %}
  
     {% if ('ROLE_ADMIN') %}
         {{ include('article/_delete_form.html.twig') }}
-        
+        <a href="{{path('app_admin')}}">Retour au tableau de bord </a>
+        <p>{{article.statutArticle ? 'Visible' : 'En attente' }}</p>
     {% endif %}
     
 </main>

@@ -5,12 +5,13 @@
     
 {% endblock %}
 {% block body %}
-    {# {% for message in app.flashes('success') %}
-        <div>
-            {{message}}
-        </div>
-        
-    {% endfor %} #}
+
+  {% for message in app.flashes('success') %}
+		<div class="bg-success ">
+			{{ message | join('<br>') }}
+		</div>
+	{% endfor %}
+    
 <main class="h-screen">
   <h2 class="text-2xl font-semibold mb-2 text-stone-800">Liste de vos textes</h2>
     <table class="w-screen m-8 p-6">

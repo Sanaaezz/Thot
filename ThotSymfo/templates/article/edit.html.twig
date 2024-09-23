@@ -3,6 +3,15 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
+<script>
+    tinymce.init({
+        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
+        menubar: false, // Désactive la barre de menus
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
+    });
+</script>
     <h1>Edit Article</h1>
   
         <label class="relative inline-flex cursor-pointer items-center">

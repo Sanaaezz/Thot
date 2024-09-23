@@ -48,7 +48,7 @@ final class ArticleController extends AbstractController
         
             $entityManager->flush();
 
-            // $this->addFlash('success', 'Votre texte a bien été envoyé, aprés vérification, il sera bientot visible ');
+            $this->addFlash('success', 'Votre texte a bien été envoyé, aprés vérification, il sera bientot visible ');
             return $this->redirectToRoute('app_auteur', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -64,6 +64,25 @@ final class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+        ]);
+    }
+
+    #[IsGranted('ROLE_ADMIN', statusCode: 423, message: "Vous n'avez pas les droits pour accéder à cette page")]
+    #[Route('/{id}/validation', name: 'app_article_validation', methods: ['GET', 'POST'])]
+    public function showadmin(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('article/validation.html.twig', [
+            'article' => $article,
+            'form' => $form,
         ]);
     }
 
@@ -92,8 +111,13 @@ final class ArticleController extends AbstractController
             $entityManager->remove($article);
             $entityManager->flush();
         }
+        
+        if($this->isGranted('ROLE_ADMIN')){
+                    return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
+        }elseif($this->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('app_auteur', [], Response::HTTP_SEE_OTHER);
+        }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
 
 }

@@ -5,11 +5,11 @@
  {% block body %}
 
     
-<main class="h-screen">
+<main class="">
 <h1>Tableau de bord</h1>
 <div class=" flex ">
-  <div x-data="{ openTab: 1 }" class="p-8">
-    <div class="max-w-md mx-auto">
+  <div x-data="{ openTab: 1 }" class="p-8 w-screen">
+    <div class=" mx-auto ">
       <div class="mb-4 flex space-x-10 p-2 bg-white rounded-lg shadow-md">
         <button x-on:click="openTab = 1" class="{ 'bg-stone-800 text-white': openTab === 1 }" class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-stone transition-all duration-300">Textes</button>
         <button x-on:click="openTab = 2" class="{ 'bg-stone-800 text-white': openTab === 2 }" class="flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-stone transition-all duration-300">Utilisateurs</button>
@@ -18,7 +18,7 @@
       <div x-show="openTab === 1" class="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 border-stone-800">
         <h2 class="text-2xl font-semibold mb-2 text-stone-800">Liste des textes</h2>
                 
-        <table>
+        <table class='w-full'>
           <thead>
             <tr>
             <th>Titre</th>
@@ -33,8 +33,8 @@
           <td>{{ article.dateArticle ? article.dateArticle|date('Y-m-d ') : '' }}</td>
           <td>{{article.statutArticle ? 'Visible' : 'En attente' }}</td>
           <td>
-            {# <a href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a> #}
-            <a href="{{path('app_article_edit', {'id' : article.id})}}">Voir</a>
+            <a href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
+            {# <a href="{{path('app_article_edit', {'id' : article.id})}}">Voir</a> #}
           </td>
           </tr>
               {% else %}
@@ -48,7 +48,7 @@
 
       <div x-show="openTab === 2" class="transition-all duration-300 bg-white p-4 rounded-lg shadow-md   border-l-4 border-stone-800">
         <h2 class="text-2xl font-semibold mb-2 text-stone-800">Liste des utilisateurs</h2>
-          <table class="table">
+          <table class="table w-full">
             <thead>
               <tr>
                 <th>Id</th>
